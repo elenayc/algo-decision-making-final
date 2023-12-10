@@ -26,9 +26,9 @@ using CPUTime
 #using Base: get
 
 ENV["COLUMNS"]=100
-cd("..")
-pwd()
+println("Hello, World! $(pwd())")
 end
+
 
 @everywhere begin
 function LoadChains(file_path::String, request_arrive::Int64, window::Int64)
@@ -645,6 +645,12 @@ function POMDPs.action(p::RootMCTSPlanner{<:MDP}, s::CentMDPState)
 end
 
 function SelectAction(s::CentMDPState, action_map_list::Vector{Dict{CentAction, Float64}})
+    # add priority score of the online heuristics here for mike's MCTS
+    # subtract from action_scores
+    #   : rich people(higher score), subtracted more
+    #   : poor people(lower score), subtracted less
+
+    # find ut what action map is, pls let it just be the location so we can locate track
     feasible_actions = Vector{CentAction}(undef, 0)
     action_scores = Vector{Vector{Float64}}(undef, 0)
 
@@ -985,13 +991,16 @@ test = false
 dirpath_base = "data/results"
 
 # Experiment 1
-num_vehicles_list = [3, 4, 5]
+#num_vehicles_list = [3, 4, 5]
+num_vehicles_list = [5]
 capacity_list = [8]
 k_max_list = [10]
 vv_list = [true]
 budget_list = [false, true]
-policy_type_list = ["mcts", "greedy"]
-mcts_iterations_list = [1000]
+#policy_type_list = ["mcts", "greedy"]
+policy_type_list = ["mcts"]
+#mcts_iterations_list = [1000]
+mcts_iterations_list = [100]
 mcts_depth_list = [20]
 mcts_runtime_list = [Inf, 30]
 

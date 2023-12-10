@@ -1,5 +1,6 @@
 # iccps-2022-paratransit-public
-
+This final project is built upon Dr. Wilbur's 2022 paratransit project presented at the ICCPS conference
+nohup ../../../../../../../Applications/Julia-1.9.app/Contents/Resources/julia/bin/julia bin/sim_proc.jl > logs/simulation1.log & 
 Please follow the instructions below.
 
 Setup data:
